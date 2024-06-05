@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Node.js Server</title>
+    <link rel="stylesheet" type="text/css" href="./css/styles.css"/>
+</head>
+<body>
+
+<div class="reveal-overlay" style="display: flex; overflow: auto; align-items: center;"><dialog class="reveal anniversary_popup" id="exampleModal1" style="border: none; display: block;"><header class="callout" style="margin-bottom: 0px;"><h3 class="fa hide" aria-hidden="true" style="display: inline;"></h3><h3 style="display: inline;"></h3><span class="close-button" data-close="" type="button"><span></span></span></header><section>
+    <style>
+        dialog.reveal {
+            overflow-y: unset;
+        }
+        dialog.reveal.anniversary_popup {
+            width: 650px;
+            height: 480px;
+            margin: 42px;
+            border-radius: 9px;
+        }
+        @media screen and (min-width: 640px) {
+            dialog.reveal.anniversary_popup {
+                margin: auto;
+                height: 502px;
+            }
+        }
+        dialog.reveal.anniversary_popup section {
+            padding: 0;
+        }
+        dialog.reveal.anniversary_popup section .box-conntent-popup {
+            width: 100%;
+            height: auto;
+        }
+        @media screen and (min-width: 640px) {
+            dialog.reveal.anniversary_popup section .box-conntent-popup {
+                width: 50%;
+                height: 502px;
+            }
+        }
+        dialog.reveal.anniversary_popup section .box-conntent-popup .price {
+            margin-top: 40px;
+        }
+        @media screen and (min-width: 640px) {
+            dialog.reveal.anniversary_popup section .box-conntent-popup .price {
+                margin-top: 80px;
+            }
+        }
+        dialog.reveal.anniversary_popup section .box-conntent-popup .price img {
+            height: 80px;
+        }
+        @media screen and (min-width: 640px) {
+            dialog.reveal.anniversary_popup section .box-conntent-popup .price img {
+                height: 100px;
+            }
+        }
+        dialog.reveal.anniversary_popup section .box-conntent-popup .price-line {
+            margin-bottom: 24px;
+        }
+        dialog.reveal.anniversary_popup section .box-conntent-popup .price-line img {
+            width: 60%;
+        }
+        @media screen and (min-width: 640px) {
+            dialog.reveal.anniversary_popup section .box-conntent-popup .price-line img {
+                width: 65%;
+            }
+        }
+        dialog.reveal.anniversary_popup section .box-conntent-popup .price-line img.bottom-line {
+            width: 45%;
+        }
+        dialog.reveal.anniversary_popup section .box-conntent-popup .detail-popup {
+            padding: 0 24px;
+            color: #2d2d2d;
+        }
+        dialog.reveal.anniversary_popup section .box-conntent-popup .detail-popup p {
+            margin-bottom: 0;
+        }
+        dialog.reveal.anniversary_popup section .box-conntent-popup .detail-popup p.name {
+            font: bold 16px/24px Arial;
+        }
+        dialog.reveal.anniversary_popup section .box-conntent-popup .detail-popup p.we-turn {
+            font: bold 22px/26px Arial;
+            margin-bottom: 12px;
+        }
+        dialog.reveal.anniversary_popup section .box-conntent-popup .detail-popup p.free-for-you {
+            font: bold 12px/18px Arial;
+        }
+        dialog.reveal.anniversary_popup section .box-conntent-popup .detail-popup .font-dark-grey {
+            color: #707070;
+        }
+        dialog.reveal.anniversary_popup section .banner-birthday {
+            background: url(/static/css/responsive/img/2023_anniversary_bg_mobile.svg) no-repeat 0 0 / 100%;
+            height: 69px;
+        }
+        @media screen and (min-width: 640px) {
+            dialog.reveal.anniversary_popup section .banner-birthday {
+                height: auto;
+                background: url(/static/css/responsive/img/2023_anniversary_bg.svg) no-repeat 0 0 / 100%;
+            }
+        }
+        dialog.reveal.anniversary_popup section .banner-birthday .main-img-mobile {
+            top: -149px;
+            left: 80px;
+            width: 165px;
+        }
+        @media screen and (min-width: 360px) {
+            dialog.reveal.anniversary_popup section .banner-birthday .main-img-mobile {
+                top: -145px;
+            }
+        }
+        dialog.reveal.anniversary_popup section .banner-birthday .main-img {
+            top: -111px;
+            left: -33px;
+            width: 135%;
+        }
+        dialog.reveal.anniversary_popup section .banner-birthday .coin-1 {
+            top: -90px;
+            left: 43px;
+            width: 55px;
+        }
+        @media screen and (min-width: 640px) {
+            dialog.reveal.anniversary_popup section .banner-birthday .coin-1 {
+                top: -30px;
+                left: -160px;
+                width: 110px;
+            }
+        }
+        dialog.reveal.anniversary_popup section .banner-birthday .coin-2 {
+            width: 55px;
+            top: 6px;
+            left: 44px;
+        }
+        @media screen and (min-width: 640px) {
+            dialog.reveal.anniversary_popup section .banner-birthday .coin-2 {
+                top: 235px;
+                left: -110px;
+                width: 110px;
+            }
+        }
+        dialog.reveal.anniversary_popup section .banner-birthday .coin-3 {
+            top: -22px;
+            left: 187px;
+            width: 50px;
+        }
+        @media screen and (min-width: 640px) {
+            dialog.reveal.anniversary_popup section .banner-birthday .coin-3 {
+                top: 45px;
+                left: 170px;
+                width: 90px;
+            }
+        }
+        dialog.reveal.anniversary_popup section .banner-birthday .coin-4 {
+            top: 22px;
+            left: 200px;
+            width: 55px;
+        }
+        @media screen and (min-width: 640px) {
+            dialog.reveal.anniversary_popup section .banner-birthday .coin-4 {
+                top: 425px;
+                left: 245px;
+                width: 117px;
+            }
+        }
+        dialog.reveal.anniversary_popup .close-button {
+            position: absolute;
+            background: url(/images/icons/grey-close-x.svg) no-repeat center center;
+            top: -20px;
+            right: -4%;
+            width: 11px;
+            height: 11px;
+        }
+        @media screen and (min-width: 640px) {
+            dialog.reveal.anniversary_popup .close-button {
+                width: 24px;
+                height: 24px;
+                top: -24px;
+                left: 660px;
+            }
+        }
+        dialog.reveal.anniversary_popup a:hover {
+            color: #fff;
+        }
+        dialog.reveal.anniversary_popup .blue-button {
+            width: 160px;
+            border: 0;
+            font-size: 12px;
+            margin: 22px 0 30px;
+        }
+        dialog.reveal.anniversary_popup .callout {
+            padding: 0;
+        }
+    </style>
+    <div class="row">
+        <div class="box-conntent-popup banner-birthday full-width position-relative">
+            <div class="hide-till-medium-block">
+                <img class="main-img position-absolute" src="/images/2023_anniversary_bg_girl.png">
+                <img class="coin-1 position-absolute" src="/images/2023_anniversary_bg_coin1.png">
+                <img class="coin-2 position-absolute" src="/images/2023_anniversary_bg_coin2.png">
+                <img class="coin-3 position-absolute" src="/images/2023_anniversary_bg_coin3.png">
+                <img class="coin-4 position-absolute" src="/images/2023_anniversary_bg_coin4.png">
+            </div>
+            <div class="hide-from-medium">
+                <img class="main-img-mobile position-absolute" src="/images/2023_anniversary_bg_girl_mobile.png">
+                <img class="coin-1 position-absolute" src="/images/2023_anniversary_bg_coin1_mobile.png">
+                <img class="coin-2 position-absolute" src="/images/2023_anniversary_bg_coin2_mobile.png">
+                <img class="coin-3 position-absolute" src="/images/2023_anniversary_bg_coin3_mobile.png">
+                <img class="coin-4 position-absolute" src="/images/2023_anniversary_bg_coin4_mobile.png">
+            </div>
+        </div>
+
+        <div class="box-conntent-popup full-width">
+            <div id="anniversary_dialog">
+                <div class="price">
+                    <img src="/images/2023_anniversary_ccp-2.svg">
+                    <img src="/images/2023_anniversary_ccp-5.svg">
+                    <img src="/images/2023_anniversary_ccp-0.svg">
+                </div>
+                <div class="price-line">
+                    <img src="/images/2023_anniversary_upper-line.svg">
+                    <img src="/images/2023_CRAZY_CASH_POINTS.svg">
+                    <img class="bottom-line" src="/images/2023_anniversary_under-line.svg">
+                </div>
+                <div class="detail-popup">
+                    <p class="name">Hello Customer,</p>                    <p class="we-turn">WE TURN 18!</p>
+                    <p class="font-dark-grey">To celebrate, here's a</p>
+                    <p class="free-for-you font-dark-grey"> 250 Crazy Cash Points gift for you!</p>
+                </div>
+                <a class="button blue-button cursor-pointer" href="/en-GB/i/crazy-christmas-search-and-save">
+                    More Information
+                </a>
+            </div>
+        </div>
+    </div>
+</section></dialog></div>
+
+</body>
+</html>
